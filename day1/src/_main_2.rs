@@ -4,13 +4,15 @@ use std::i32;
 use regex::Regex;
 
 fn main() {
-    let mut sum  = 0;
+    let mut sum = 0;
     for line in read_to_string("input.txt").unwrap().lines() {
-        let res  = line.to_string();
+        let res = line.to_string();
 
-        let mut res = Regex::new(r"\d|one|two|three|four|five|six|seven|eight|nine").expect("").find(&res).map(
-            |x| x.as_str()
-        ).unwrap_or("err");
+        let mut res = Regex::new(r"\d|one|two|three|four|five|six|seven|eight|nine")
+            .expect("")
+            .find(&res)
+            .map(|x| x.as_str())
+            .unwrap_or("err");
 
         res = match res {
             "one" => "1",
@@ -22,16 +24,15 @@ fn main() {
             "seven" => "7",
             "eight" => "8",
             "nine" => "9",
-            _ => res
+            _ => res,
         };
 
-
-        let  rev: String  = line.to_string().chars().rev().collect();
-        let mut nn = Regex::new(r"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin").expect("").find(&rev).map(
-            |x| x.as_str()
-        ).unwrap_or("err");
-
-        
+        let rev: String = line.to_string().chars().rev().collect();
+        let mut nn = Regex::new(r"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin")
+            .expect("")
+            .find(&rev)
+            .map(|x| x.as_str())
+            .unwrap_or("err");
 
         nn = match nn {
             "eno" => "1",
@@ -43,9 +44,9 @@ fn main() {
             "neves" => "7",
             "thgie" => "8",
             "enin" => "9",
-            _ => nn
+            _ => nn,
         };
-        sum += res.parse::<i32>().unwrap()  * 10 + nn.parse::<i32>().unwrap() ;
+        sum += res.parse::<i32>().unwrap() * 10 + nn.parse::<i32>().unwrap();
     }
-    println!("{}",sum);
+    println!("{}", sum);
 }
